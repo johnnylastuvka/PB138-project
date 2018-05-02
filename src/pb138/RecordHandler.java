@@ -23,7 +23,46 @@ public class RecordHandler extends AbstractHandler {
             HttpServletRequest req,
             HttpServletResponse res
     ) throws IOException, ServletException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String[] params = target.split("/");
+        
+        boolean success;
+        
+        switch (req.getMethod()) {
+            case "PUT":
+                if (params.length != 3) {
+                    success = false;
+                    
+                    break;
+                }
+                
+                success = editor.addRecord(params[1], params[2]);
+                
+                break;
+            case "PATCH":
+                if (params.length != 4) {
+                    success = false;
+                    
+                    break;
+                }
+                
+                success = editor.changeRecordAttr(params[1], params[2], params[3]);
+                break;
+            case "DELETE":
+                if (params.length != 2) {
+                    success = false;
+                    
+                    break;
+                }
+                
+                success = editor.removeRecord(params[1]);
+                break;
+            default:
+                res.sendError(405);
+                return;
+        }
+        
+        if (success) {
+            res.setStatus(200);
+        } else res.sendError(400);
     }
-
 }
