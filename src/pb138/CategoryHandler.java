@@ -30,9 +30,9 @@ public class CategoryHandler extends AbstractHandler {
         switch (req.getMethod()) {
             case "PUT":
                 if (params.length != 2) {
-                    res.sendError(405);
+                    success = false;
                     
-                    return;
+                    break;
                 }
                 
                 success = editor.addCategory(params[1]);
@@ -40,18 +40,18 @@ public class CategoryHandler extends AbstractHandler {
                 break;
             case "PATCH":
                 if (params.length != 3) {
-                    res.sendError(405);
+                    success = false;
                     
-                    return;
+                    break;
                 }
                 
                 success = editor.renameCategory(params[1], params[2]);
                 break;
             case "DELETE":
                 if (params.length != 2) {
-                    res.sendError(405);
+                    success = false;
                     
-                    return;
+                    break;
                 }
                 
                 success = editor.removeCategory(params[1]);
