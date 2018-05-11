@@ -10,7 +10,7 @@ import org.eclipse.jetty.server.handler.ResourceHandler;
  * Main class. Sets up server.
  */
 public class Main {
-    private static LibraryEditor editor;
+    private static final LibraryEditor editor = new LibraryEditor();
     
     public static void main( String[] args ) throws Exception
     {
