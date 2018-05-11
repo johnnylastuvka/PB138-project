@@ -165,4 +165,9 @@ public class LibraryEditor {
         }
         return false;
     }
+
+    String returnDocument() {
+        // TODO automatically generated method
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

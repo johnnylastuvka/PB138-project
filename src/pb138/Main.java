@@ -24,6 +24,10 @@ public class Main {
         ContextHandler ctxRecord = new ContextHandler("/api/record");
         ctxRecord.setHandler(new RecordHandler(editor));
         
+        // Handles requests to /api/document.
+        ContextHandler ctxDocument = new ContextHandler("/api/document");
+        ctxDocument.setHandler(new DocumentHandler(editor));
+        
         // Serves static files from 'www/'
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setWelcomeFiles(new String[]{ "index.html" });
@@ -38,6 +42,7 @@ public class Main {
         contexts.setHandlers(new Handler[] {
             ctxCategory,
             ctxRecord,
+            ctxDocument,
             ctxFiles,
         });
         
