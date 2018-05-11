@@ -20,7 +20,7 @@ public class Main {
         ContextHandler ctxCategory = new ContextHandler("/api/category");
         ctxCategory.setHandler(new CategoryHandler(editor));
         
-        // Handles 'category' requests.
+        // Handles 'record' requests.
         ContextHandler ctxRecord = new ContextHandler("/api/record");
         ctxRecord.setHandler(new RecordHandler(editor));
         
