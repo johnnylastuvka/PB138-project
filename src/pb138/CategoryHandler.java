@@ -11,7 +11,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
  * Handles requests starting with "category/".
  */
 public class CategoryHandler extends AbstractHandler {
-    private LibraryEditor editor;
+    private final LibraryEditor editor;
     
     public CategoryHandler(LibraryEditor editor) {
         this.editor = editor;

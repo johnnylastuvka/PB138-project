@@ -13,7 +13,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
  * @author Jozef Mikusinec
  */
 class DocumentHandler extends AbstractHandler {
-    private LibraryEditor editor;
+    private final LibraryEditor editor;
     
     public DocumentHandler(LibraryEditor editor) {
         this.editor = editor;

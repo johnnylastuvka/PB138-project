@@ -11,7 +11,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
  * Handles requests starting with "record/".
  */
 public class RecordHandler extends AbstractHandler {
-    private LibraryEditor editor;
+    private final LibraryEditor editor;
     
     public RecordHandler(LibraryEditor editor) {
         this.editor = editor;
