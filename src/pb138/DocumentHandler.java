@@ -29,7 +29,7 @@ class DocumentHandler extends AbstractHandler {
             res.sendError(405);
         }
         
-        if (!target.equals("")) {
+        if (!target.equals("/")) {
             res.sendError(404);
         }
         
