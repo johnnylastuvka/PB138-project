@@ -152,6 +152,42 @@ public class LibraryEditor {
         return false;
     }
     
+    public String returnDocument() {
+        StringBuilder text = new StringBuilder();
+        text.append("<library>" + System.getProperty("line.separator"));
+        Row row;
+        int j;
+        for (int i = 0; i < doc.getSheetCount(); ++i) {
+            text.append(tab(1) + "<category name=\"" + doc.getSheetByIndex(i).getTableName() + "\">" + System.getProperty("line.separator"));
+            int k = 0;
+            Row firstLine = doc.getSheetByIndex(i).getRowByIndex(0);
+            text.append(tab(2) + "<attributes>" + System.getProperty("line.separator"));
+            while (!firstLine.getCellByIndex(k).getStringValue().equals("")) {
+                text.append(tab(3) + "<attribute>" + firstLine.getCellByIndex(k).getStringValue() + "</attribute>" + System.getProperty("line.separator"));
+                ++k;
+            }
+            text.append(tab(2) + "</attributes>" + System.getProperty("line.separator"));
+            j = 1;
+            text.append(System.getProperty("line.separator"));
+            text.append(tab(2) + "<records>" + System.getProperty("line.separator"));
+            while (!doc.getSheetByIndex(i).getCellByPosition(0, j).getStringValue().equals("")) {
+            row = doc.getSheetByIndex(i).getRowByIndex(j);
+            text.append(tab(3) + "<record>" + System.getProperty("line.separator"));
+            for (int col = 0; col < 6; ++col) {
+                if (!row.getCellByIndex(col).getStringValue().equals("")) {
+                    text.append(tab(4) + "<attribute>" + row.getCellByIndex(col).getStringValue() + "</attribute>" + System.getProperty("line.separator"));
+                } 
+            }
+            text.append(tab(3) + "</record>" + System.getProperty("line.separator"));
+            ++j;
+            }
+            text.append(tab(2) + "</records>" + System.getProperty("line.separator"));
+            text.append(tab(1) + "</category>" + System.getProperty("line.separator"));
+        }
+        text.append("</library>").append(System.getProperty("line.separator"));
+        return text.toString();
+    }
+    
     private boolean containsRecord(String name) {
         int j;
         for (int i = 0; i < doc.getSheetCount(); ++i) {
@@ -166,8 +202,11 @@ public class LibraryEditor {
         return false;
     }
 
-    String returnDocument() {
-        // TODO return document
-        return "<library />";
+    private String tab(int num) {
+        StringBuilder tabulators = new StringBuilder();
+        for (int i = 0; i < num; ++i) {
+            tabulators.append("  ");
+        }
+        return tabulators.toString();
     }
 }
