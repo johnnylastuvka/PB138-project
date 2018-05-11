@@ -167,7 +167,7 @@ public class LibraryEditor {
     }
 
     String returnDocument() {
-        // TODO automatically generated method
-        throw new UnsupportedOperationException("Not supported yet.");
+        // TODO return document
+        return "<library />";
     }
 }
