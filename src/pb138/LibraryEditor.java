@@ -12,7 +12,11 @@ public class LibraryEditor {
     private static String path = "./www/library.ods";
     private SpreadsheetDocument doc;
     
-    public  boolean openDocument() {
+    public LibraryEditor() {
+        openDocument();
+    }
+    
+    private boolean openDocument() {
         try {
             doc = SpreadsheetDocument.loadDocument(path);
         } catch (Exception e) {
@@ -22,7 +26,7 @@ public class LibraryEditor {
         return true;
     }
     
-    public boolean saveDocument() {
+    private boolean saveDocument() {
         try {
             doc.save(new File(path));
         } catch (Exception e) {
@@ -41,6 +45,7 @@ public class LibraryEditor {
             table.getCellByPosition(3, 0).setStringValue("Film 3");
             table.getCellByPosition(4, 0).setStringValue("Film 4");
             table.getCellByPosition(5, 0).setStringValue("Film 5");
+            saveDocument();
             return true;
         }
         return false;
@@ -50,6 +55,7 @@ public class LibraryEditor {
         Table categorySheet;
         if ((categorySheet = doc.getSheetByName(oldName)) != null && doc.getSheetByName(newName) == null) {
             categorySheet.setTableName(newName);
+            saveDocument();
             return true;
         }
         return false;
@@ -59,6 +65,7 @@ public class LibraryEditor {
         for (int i = 0; i < doc.getSheetCount(); ++i) {
             if (doc.getSheetByIndex(i).getTableName().equals(name) && doc.getSheetByIndex(i).getCellByPosition(1, 1).getStringValue().equals("")) {
                 doc.removeSheet(i);
+                saveDocument();
                 return true;
             }
         }
@@ -73,6 +80,7 @@ public class LibraryEditor {
                     int id = categorySheet.getCellByPosition(0, 1).getStringValue().equals("") ? 1 : Integer.parseInt(categorySheet.getCellByPosition(0, i - 1).getStringValue()) + 1;
                     categorySheet.getCellByPosition(0, i).setStringValue(String.valueOf(id));
                     categorySheet.getCellByPosition(1, i).setStringValue(name);
+                    saveDocument();
                     return true;
                 }
             }
@@ -96,6 +104,7 @@ public class LibraryEditor {
                                     toCategory.getCellByPosition(h, line).setStringValue(row.getCellByIndex(h).getStringValue());
                                 }
                                 doc.getSheetByIndex(i).removeRowsByIndex(j, 1);
+                                saveDocument();
                                 return true;
                             }
                         }
@@ -127,7 +136,7 @@ public class LibraryEditor {
                             default:
                                 return false;
                         }
-                        
+                        saveDocument();
                         return true;
                     }
                     ++j;
@@ -144,6 +153,7 @@ public class LibraryEditor {
             do {
                 if (doc.getSheetByIndex(i).getCellByPosition(1, j).getStringValue().equals(name)) {
                     doc.getSheetByIndex(i).removeRowsByIndex(j, 1);
+                    saveDocument();
                     return true;
                 }
                 ++j;
