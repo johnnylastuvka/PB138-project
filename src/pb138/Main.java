@@ -31,7 +31,7 @@ public class Main {
         // Serves static files from 'www/'
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setWelcomeFiles(new String[]{ "index.html" });
-        resourceHandler.setResourceBase("www/");
+        resourceHandler.setResourceBase("www/build/");
         
         // Wrapper for 'resourceHandler'.
         ContextHandler ctxFiles = new ContextHandler("/");

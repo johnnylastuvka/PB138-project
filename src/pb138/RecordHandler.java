@@ -26,7 +26,7 @@ public class RecordHandler extends AbstractHandler {
         String[] params = target.split("/");
         
         boolean success;
-        
+
         switch (req.getMethod()) {
             case "PUT":
                 if (params.length != 3) {
