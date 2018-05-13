@@ -63,6 +63,7 @@ public class RecordHandler extends AbstractHandler {
         
         if (success) {
             res.setStatus(200);
+            base.setHandled(true);
         } else res.sendError(400);
     }
 }
