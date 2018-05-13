@@ -1,0 +1,72 @@
+@import 'vendor/bootstrap/bootstrap-reboot.min.css';
+@import 'vendor/bootstrap/bootstrap-grid.min.css';
+@import 'vendor/font-awesome/css/font-awesome.min.css';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=latin,latin-ext');
+@import "colors";
+@import "components";
+@import "header";
+@import "sidebar";
+@import "main";
+@import "helper-classes";
+@import 'vendor/rodal.css';
+@import "rodal";
+
+body {
+  background: #222222;
+  font-family: 'Open Sans', sans-serif;
+  padding: 20px 0;
+  font-weight: 300;
+}
+
+.container {
+  background: #3E303F;
+  padding-bottom: 15px;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  background-color: rgba(34, 34, 34, 0.5);
+  cursor: wait;
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 64px;
+    opacity: 1;
+  }
+}
+
+.page-loading {
+  .container {
+    filter: blur(0px);
+    animation: blur-animation 1s linear forwards;
+  }
+}
+
+@keyframes blur-animation {
+  0% {
+    filter: blur(0px);
+  }
+  50% {
+    filter: blur(5px);
+  }
+  100% {
+    filter: blur(10px);
+  }
+}
+
+.scrollbar-measure {
+  width: 100px;
+  height: 100px;
+  overflow: scroll;
+  position: absolute;
+  top: -9999px;
+}

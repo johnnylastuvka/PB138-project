@@ -1,0 +1,33 @@
+@import "colors";
+
+.button-circle {
+  width: auto;
+  border: 1px solid $text-darker;
+  border-radius: 50%;
+  color: $text-darker;
+  background: transparent;
+  text-align: center;
+
+  i {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+  }
+
+  &--small {
+    font-size: 10px;
+    padding: 1px 4px;
+
+    i {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid lighten($text-darker, 15%);
+    border-radius: 50%;
+    color: lighten($text-darker, 15%);
+  }
+}
