@@ -34,6 +34,10 @@ class DocumentHandler extends AbstractHandler {
         }
         
         res.setContentType("text/xml; charset=utf-8");
+        // TODO - move http://localhost:3000 to some config file
+        res.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+        res.addHeader("Access-Control-Allow-Credentials", "true");
+        res.addHeader("Access-Control-Allow-Methods", "GET");
         res.setStatus(HttpServletResponse.SC_OK);
         res.getWriter().println(editor.returnDocument());
         

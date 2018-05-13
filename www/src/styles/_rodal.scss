@@ -26,6 +26,7 @@
   position: relative !important;
   background: $bg-gray !important;
   color: $text-light !important;
+  overflow: hidden;
 
   @media (max-width: 620px) {
     margin: 15px !important;
@@ -44,6 +45,7 @@
     background: $bg-light-gray;
     padding: 8px;
     color: $text-gray;
+    border: 0;
   }
 }
 
@@ -57,9 +59,8 @@
   margin-top: 15px;
 
   .rodal__confirm__btn {
-    width: 60px;
+    width: 80px;
     text-align: center;
-    background: transparent;
     font-weight: 700;
     font-size: 24px;
 
@@ -71,5 +72,18 @@
 
   .rodal__confirm__btn--gray {
     color: gray;
+  }
+}
+
+.rodal__alert__btn {
+  display: block;
+  float: right;
+  font-weight: 700;
+  font-size: 24px;
+  padding: 2px 20px;
+
+  &:hover {
+    cursor: pointer;
+    background: darken($bg-gray, 10%);
   }
 }

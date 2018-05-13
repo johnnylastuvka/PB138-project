@@ -56,6 +56,9 @@ public class RecordHandler extends AbstractHandler {
                 
                 success = editor.removeRecord(params[1]);
                 break;
+            case "OPTIONS":
+                success = true;
+                break;
             default:
                 res.sendError(405);
                 return;
@@ -63,6 +66,9 @@ public class RecordHandler extends AbstractHandler {
         
         if (success) {
             res.setStatus(200);
+            res.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+            res.addHeader("Access-Control-Allow-Credentials", "true");
+            res.addHeader("Access-Control-Allow-Methods", "PUT, PATCH, DELETE");
             base.setHandled(true);
         } else res.sendError(400);
     }
