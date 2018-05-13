@@ -10,6 +10,10 @@
   margin-left: 10px;
 }
 
+.margin-top--15 {
+  margin-top: 15px;
+}
+
 .text {
   &--light {
     color: $text-light;
@@ -29,6 +33,10 @@
 
   &--small {
     font-size: 11px;
+  }
+
+  &--left {
+    text-align: left !important;
   }
 }
 
