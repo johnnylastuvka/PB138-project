@@ -9,17 +9,17 @@ class Loading extends Component {
         }
     }
 
-    componentWillMount = function () {
+    componentWillMount = () => {
         this._requestStarted = PubSub.subscribe('requestStarted', this.requestStarted.bind(this));
         this._requestFinished = PubSub.subscribe('requestFinished', this.requestFinished.bind(this));
     };
 
-    componentWillUnmount = function () {
+    componentWillUnmount = () => {
         PubSub.unsubscribe(this._requestStarted);
         PubSub.unsubscribe(this._requestFinished);
     };
 
-    requestStarted = function (msg, data) {
+    requestStarted = (msg, data) => {
         if (this._timeout) {
             clearTimeout(this._timeout);
         }
@@ -29,7 +29,7 @@ class Loading extends Component {
         }, 200);
     };
 
-    requestFinished = function (msg, data) {
+    requestFinished = (msg, data) => {
         if (this._timeout) {
             clearTimeout(this._timeout);
         }

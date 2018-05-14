@@ -36,6 +36,19 @@ export function put(url, data) {
 }
 
 // use this to post a data via api
+export function patch(url, data) {
+    PubSub.publish('requestStarted');
+    return api.patch(url, data).then((response) => {
+        PubSub.publish('requestFinished');
+        return response;
+    }).catch((e) => {
+        handleHttpError(e);
+        PubSub.publish('requestFinishedWithError');
+        PubSub.publish('requestFinished');
+    })
+}
+
+// use this to post a data via api
 export function post(url, data) {
     PubSub.publish('requestStarted');
     return api.post(url, data).then((response) => {

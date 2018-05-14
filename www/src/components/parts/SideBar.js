@@ -20,11 +20,11 @@ export default class SideBar extends Component {
         this.reload();
     }
 
-    componentWillMount = function () {
+    componentWillMount = () => {
         this._selectCategory = PubSub.subscribe('selectCategory', this.remoteSelectCategory.bind(this));
     };
 
-    componentWillUnmount = function () {
+    componentWillUnmount = () => {
         PubSub.unsubscribe(this._selectCategory);
     };
 
@@ -46,7 +46,7 @@ export default class SideBar extends Component {
                 let parseString = require('xml2js').parseString;
                 let categories = [];
 
-                parseString(response.data, function (err, result) {
+                parseString(response.data, (err, result) => {
                     if (result && result.library && result.library.category) {
                         for (let row in result.library.category) {
                             let category = result.library.category[row];
@@ -68,7 +68,7 @@ export default class SideBar extends Component {
     }
 
     toggleModal = (openModal) => {
-        document.getElementById("add-category-input").value = '';
+        document.getElementById("addCategoryInput").value = '';
 
         this.setState({openModal});
 
@@ -80,9 +80,9 @@ export default class SideBar extends Component {
     };
 
     createCategory() {
-        let nameOfNewCategory = document.getElementById("add-category-input").value;
+        let nameOfNewCategory = document.getElementById("addCategoryInput").value;
 
-        put("/category/" + nameOfNewCategory).then(
+        put("/category/" + encodeURIComponent(nameOfNewCategory)).then(
             response => {
                 if (response) {
                     this.reload();
@@ -100,11 +100,12 @@ export default class SideBar extends Component {
 
         confirm("Opravdu chcete smazat kategorii " + categoryId + "?").then(
             result => {
-                httpDelete("/category/" + categoryId).then(
+                httpDelete("/category/" + encodeURIComponent(categoryId)).then(
                     response => {
                         if (response) {
                             this.reload();
                             PubSub.publish('removedCategory', {categoryId: categoryId});
+                            this.setState({selectedCategory: null});
                         } else {
                             modalAlert("Nelze smazat neprázdnou kategorii!");
                         }
@@ -169,7 +170,7 @@ export default class SideBar extends Component {
                             Přidat kategorii:
                         </h1>
 
-                        <input className={"margin-top--15"} type={"text"} placeholder={"Název kategorie"} id={"add-category-input"} />
+                        <input className={"margin-top--15"} type={"text"} placeholder={"Název kategorie"} id={"addCategoryInput"} />
 
                         <div className={'rodal__confirm__buttons'}>
                             <span className={'rodal__confirm__btn'} onClick={() => this.createCategory()}>Ok</span>
