@@ -62,7 +62,9 @@ public class LibraryEditor {
     }
     
     public boolean removeCategory(String name) {
+        int col;
         for (int i = 0; i < doc.getSheetCount(); ++i) {
+            col = doc.getSheetByIndex(i).getTableName().equals("DVD_hudební") ? 2 : 1;
             if (doc.getSheetByIndex(i).getTableName().equals(name) && doc.getSheetByIndex(i).getCellByPosition(1, 1).getStringValue().equals("")) {
                 doc.removeSheet(i);
                 saveDocument();
@@ -75,11 +77,12 @@ public class LibraryEditor {
     public boolean addRecord(String name, String category) {
         Table categorySheet;
         if ((categorySheet = doc.getSheetByName(category)) != null && !containsRecord(name)) {
+            int col = category.equals("DVD_hudební") ? 2 : 1;
             for (int i = 1;;++i) {
-                if (categorySheet.getCellByPosition(1, i).getStringValue().equals("")) {
+                if (categorySheet.getCellByPosition(col, i).getStringValue().equals("")) {
                     int id = categorySheet.getCellByPosition(0, 1).getStringValue().equals("") ? 1 : Integer.parseInt(categorySheet.getCellByPosition(0, i - 1).getStringValue()) + 1;
                     categorySheet.getCellByPosition(0, i).setStringValue(String.valueOf(id));
-                    categorySheet.getCellByPosition(1, i).setStringValue(name);
+                    categorySheet.getCellByPosition(col, i).setStringValue(name);
                     saveDocument();
                     return true;
                 }
@@ -90,11 +93,14 @@ public class LibraryEditor {
     
     public boolean changeRecordAttr(String name, String attr, String value) {
         Table toCategory;
-        if (attr.equals("category") && (toCategory = doc.getSheetByName(value)) != null) {
+        if (attr.equals("category") && (toCategory = doc.getSheetByName(value)) != null && value != "DVD_hudební") {
             for (int i = 0; i < doc.getSheetCount(); ++i) {
                 int j = 0;
                 do {
                     if (doc.getSheetByIndex(i).getCellByPosition(1, j).getStringValue().equals(name)) {
+                        if (doc.getSheetByIndex(i).getTableName().equals("DVD_hudební")) {
+                            return false;
+                        }
                         Row row = doc.getSheetByIndex(i).getRowByIndex(j);
                         for (int line = 1;; ++line) {
                             if (toCategory.getCellByPosition(1, line).getStringValue().equals("")) {
@@ -113,28 +119,22 @@ public class LibraryEditor {
                 } while (!doc.getSheetByIndex(i).getCellByPosition(0, j).getStringValue().equals(""));
             }
         } else {
+            int col;
             for (int i = 0; i < doc.getSheetCount(); ++i) {
                 int j = 0;
                 do {
-                    if (doc.getSheetByIndex(i).getCellByPosition(1, j).getStringValue().equals(name)) {
-                        switch(attr) {
-                            case "Film 1":
-                                doc.getSheetByIndex(i).getCellByPosition(1, j).setStringValue(value);
-                                break;
-                            case "Film 2":
-                                doc.getSheetByIndex(i).getCellByPosition(2, j).setStringValue(value);
-                                break;
-                            case "Film 3":
-                                doc.getSheetByIndex(i).getCellByPosition(3, j).setStringValue(value);
-                                break;   
-                            case "Film 4":
-                                doc.getSheetByIndex(i).getCellByPosition(4, j).setStringValue(value);
-                                break;
-                            case "Film 5":
-                                doc.getSheetByIndex(i).getCellByPosition(5, j).setStringValue(value);
-                                break;    
-                            default:
-                                return false;
+                    col = doc.getSheetByIndex(i).getTableName().equals("DVD_hudební") ? 2 : 1;
+                    if (doc.getSheetByIndex(i).getCellByPosition(col, j).getStringValue().equals(name)) {
+                        int k = 1;
+                        while (!doc.getSheetByIndex(i).getCellByPosition(k, 0).getStringValue().equals("")) {
+                            if (doc.getSheetByIndex(i).getCellByPosition(k, 0).getStringValue().equals(attr)) {
+                                if ((doc.getSheetByIndex(i).getCellByPosition(k, 0).getStringValue().equals("Titul") 
+                                        || doc.getSheetByIndex(i).getCellByPosition(k, 0).getStringValue().equals("Film 1")) && containsRecord(value)) {
+                                    return false;
+                                }
+                                doc.getSheetByIndex(i).getCellByPosition(k, j).setStringValue(value);
+                            }
+                            ++k;
                         }
                         saveDocument();
                         return true;
@@ -148,16 +148,18 @@ public class LibraryEditor {
     
     public boolean removeRecord(String name) {
         int j;
+        int col;
         for (int i = 0; i < doc.getSheetCount(); ++i) {
             j = 1;
+            col = doc.getSheetByIndex(i).getTableName().equals("DVD_hudební") ? 2 : 1;
             do {
-                if (doc.getSheetByIndex(i).getCellByPosition(1, j).getStringValue().equals(name)) {
+                if (doc.getSheetByIndex(i).getCellByPosition(col, j).getStringValue().equals(name)) {
                     doc.getSheetByIndex(i).removeRowsByIndex(j, 1);
                     saveDocument();
                     return true;
                 }
                 ++j;
-            } while (!doc.getSheetByIndex(i).getCellByPosition(1, j).getStringValue().equals(""));
+            } while (!doc.getSheetByIndex(i).getCellByPosition(col, j).getStringValue().equals(""));
         }
         return false;
     }
@@ -200,14 +202,16 @@ public class LibraryEditor {
     
     private boolean containsRecord(String name) {
         int j;
+        int col;
         for (int i = 0; i < doc.getSheetCount(); ++i) {
+            col = doc.getSheetByIndex(i).getTableName().equals("DVD_hudební") ? 2 : 1;
             j = 0;
             do {
-                if (doc.getSheetByIndex(i).getCellByPosition(1, j).getStringValue().equals(name)) {
+                if (doc.getSheetByIndex(i).getCellByPosition(col, j).getStringValue().equals(name)) {
                     return true;
                 }
                 ++j;
-            } while (!doc.getSheetByIndex(i).getCellByPosition(1, j).getStringValue().equals(""));
+            } while (!doc.getSheetByIndex(i).getCellByPosition(col, j).getStringValue().equals(""));
         }
         return false;
     }
