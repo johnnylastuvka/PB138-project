@@ -16,4 +16,6 @@ in ./www
 
 ```npm run build```
 
+Set Access-Control-Allow-Origin to ```http://localhost:8080```
+
 and then run jetty server. Builed application is accessible on http://localhost:8080
