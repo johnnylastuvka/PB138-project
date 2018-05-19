@@ -16,4 +16,4 @@ in ./www
 
 ```npm run build```
 
-and then run jetty server. Builed application is accessible on `http://localhost:8080`.
+and then run jetty server. Application is now accessible on `http://localhost:8080`.
