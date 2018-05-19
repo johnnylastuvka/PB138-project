@@ -1,0 +1,71 @@
+@import "colors";
+
+.sidebar {
+
+  h2 {
+    color: $text-light;
+    font-weight: 300;
+    font-size: 15px;
+  }
+
+  .categories-list {
+    width: calc(100% - 2px);
+    margin-left: 2px;
+    padding-left: 0;
+    border-left: 4px solid $bg-dark-gray;
+    list-style-type: none;
+    padding-top: 15px;
+
+    li {
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+
+      &:before {
+        width: 20px;
+        height: 20px;
+        background: $bg-gray;
+        border: 3px solid $bg-dark-gray;
+        content: "";
+        display: block;
+        margin-left: -12px;
+        border-radius: 50%;
+      }
+
+      .categories-list__item__name {
+        display: block;
+        font-size: 15px;
+        padding-right: 10px;
+        padding-left: 15px;
+        color: $text-dark;
+        font-weight: 600;
+        line-height: 1;
+        width: calc(100% - 20px);
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-all;
+
+        &:hover {
+          cursor: pointer;
+          color: lighten($text-dark, 15%);
+        }
+      }
+    }
+
+    li.active {
+      &:before {
+        width: 25px;
+        height: 25px;
+        margin-left: -15px;
+        border: 3px solid $bg-light-blue;
+      }
+
+      .categories-list__item__name {
+        color: $bg-light-blue;
+        padding-left: 13px;
+        width: calc(100% - 45px);
+      }
+    }
+  }
+
+}

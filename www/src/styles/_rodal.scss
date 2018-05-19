@@ -1,0 +1,89 @@
+@import "colors";
+
+.modal-open {
+  overflow: hidden;
+}
+
+.rodal-mask {
+  background: transparent !important;
+  opacity: 0 !important;
+}
+
+.rodal {
+  position: fixed !important;
+  overflow-y: auto !important;
+  background: rgba(84, 84, 84, 0.8) !important;
+}
+
+.rodal-dialog {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 590px !important;
+  padding: 20px !important;
+  margin: 50px auto !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  position: relative !important;
+  background: $bg-gray !important;
+  color: $text-light !important;
+  overflow: hidden;
+
+  @media (max-width: 620px) {
+    margin: 15px !important;
+    padding: 15px !important;
+    width: calc(100% - 30px) !important;
+  }
+
+  h1 {
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  input, select {
+    width: 100%;
+    background: $bg-light-gray;
+    padding: 8px;
+    color: $text-gray;
+    border: 0;
+  }
+}
+
+.rodal-close {
+  display: none !important;
+}
+
+.rodal__confirm__buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 15px;
+
+  .rodal__confirm__btn {
+    width: 80px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+
+    &:hover {
+      cursor: pointer;
+      background: darken($bg-gray, 10%);
+    }
+  }
+
+  .rodal__confirm__btn--gray {
+    color: gray;
+  }
+}
+
+.rodal__alert__btn {
+  display: block;
+  float: right;
+  font-weight: 700;
+  font-size: 24px;
+  padding: 2px 20px;
+
+  &:hover {
+    cursor: pointer;
+    background: darken($bg-gray, 10%);
+  }
+}

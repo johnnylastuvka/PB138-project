@@ -1,0 +1,49 @@
+.margin-left--10 {
+  margin-left: 10px;
+}
+
+.margin-left--40 {
+  margin-left: 40px;
+}
+
+.margin-right--10 {
+  margin-left: 10px;
+}
+
+.margin-top--15 {
+  margin-top: 15px;
+}
+
+.margin-bottom--15 {
+  margin-bottom: 15px;
+}
+
+.text {
+  &--light {
+    color: $text-light;
+  }
+
+  &--darken {
+    color: $text-darker;
+  }
+
+  &--dark {
+    color: $text-dark;
+  }
+
+  &--gray {
+    color: $text-gray;
+  }
+
+  &--small {
+    font-size: 11px;
+  }
+
+  &--left {
+    text-align: left !important;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}

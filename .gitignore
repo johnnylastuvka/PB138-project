@@ -4,3 +4,8 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+.idea/
+www/src/styles/*.css
+www/src/styles/*.map
+www/node_modules/
+www/build/
