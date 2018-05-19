@@ -1,7 +1,7 @@
 # Install
 in ./www
 
-```npm run install```
+```npm install```
 
 # Run app for develop
 Firstly you must run server with API and then run following command in ./www:
@@ -16,6 +16,4 @@ in ./www
 
 ```npm run build```
 
-Set Access-Control-Allow-Origin to ```http://localhost:8080```
-
-and then run jetty server. Builed application is accessible on http://localhost:8080
+and then run jetty server. Builed application is accessible on `http://localhost:8080`.
