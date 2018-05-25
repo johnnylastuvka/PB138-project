@@ -285,6 +285,7 @@ export default class Main extends Component {
                 httpDelete("/record/" + encodeURIComponent(this.state.selectedRecord.selectedRecord)).then(
                     response => {
                         if (response) {
+                            PubSub.publish('removedRecord', {record: this.state.selectedRecord.selectedRecord, category: this.state.showCategory});
                             this.reload();
                         }
                     }
@@ -304,6 +305,7 @@ export default class Main extends Component {
             response => {
                 if (response) {
                     this.toggleModalMove(false);
+                    PubSub.publish('movedRecord', {record: this.state.selectedRecord.selectedRecord, category: this.state.showCategory, newCategory: nameOfNewCategory});
                     this.reload();
                 } else {
                     modalAlert("Při přesouvání média do jiné kategorie došlo k chybě.");
@@ -319,7 +321,7 @@ export default class Main extends Component {
                 response => {
                     if (response) {
                         this.toggleModalAdd(false);
-                        PubSub.publish('addedRecord');
+                        PubSub.publish('addedRecord', {nameOfNewRecord, category: this.state.showCategory});
                         this.reload();
                     } else {
                         this.toggleModalAdd(false);

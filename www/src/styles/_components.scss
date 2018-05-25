@@ -27,7 +27,17 @@
   &:hover {
     cursor: pointer;
     border: 1px solid lighten($text-darker, 15%);
-    border-radius: 50%;
     color: lighten($text-darker, 15%);
+  }
+
+  &:disabled {
+    border: 1px solid darken($text-darker, 25%);
+    color: darken($text-darker, 25%);
+
+    &:hover {
+      cursor: not-allowed;
+      border: 1px solid darken($text-darker, 25%);
+      color: darken($text-darker, 25%);
+    }
   }
 }

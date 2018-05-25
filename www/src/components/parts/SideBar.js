@@ -22,14 +22,53 @@ export default class SideBar extends Component {
 
     componentWillMount = () => {
         this._selectCategory = PubSub.subscribe('selectCategory', this.remoteSelectCategory.bind(this));
+        this._removedRecordFromCategory = PubSub.subscribe('removedRecord', this.removedRecordFromCategory.bind(this));
+        this._movedRecordFromCategory = PubSub.subscribe('movedRecord', this.movedRecordFromCategory.bind(this));
+        this._addedRecordToCategory = PubSub.subscribe('addedRecord', this.addedRecordToCategory.bind(this));
     };
 
     componentWillUnmount = () => {
         PubSub.unsubscribe(this._selectCategory);
+        PubSub.unsubscribe(this._removedRecordFromCategory);
+        PubSub.unsubscribe(this._movedRecordFromCategory);
+        PubSub.unsubscribe(this._addedRecordToCategory);
     };
 
     remoteSelectCategory = (msg, data) => {
         this.selectCategory(data.categoryId);
+    };
+
+    removedRecordFromCategory = (msg, data) => {
+        if (data && data.category) {
+            this.changeCategoryCount(data.category, -1);
+        }
+    };
+
+    movedRecordFromCategory = (msg, data) => {
+        if (data && data.category && data.newCategory) {
+            this.changeCategoryCount(data.category, -1);
+            this.changeCategoryCount(data.newCategory, 1);
+        }
+    };
+
+    addedRecordToCategory = (msg, data) => {
+        if (data && data.category) {
+            this.changeCategoryCount(data.category, 1);
+        }
+    };
+
+    changeCategoryCount = (categoryId, change) => {
+        let categories = this.state.categories;
+        categories.forEach((data, index) => {
+            if (data.name === categoryId) {
+                categories[index].count = categories[index].count + change;
+
+                if (categories[index].count < 0) {
+                    categories[index].count = 0;
+                }
+            }
+        });
+        this.setState({categories});
     };
 
     reload = () => {
@@ -50,10 +89,15 @@ export default class SideBar extends Component {
                     if (result && result.library && result.library.category) {
                         for (let row in result.library.category) {
                             let category = result.library.category[row];
-                            categories.push({name: category.$.name});
+                            let count = 0;
+                            if (category.hasOwnProperty("records") && category.records.hasOwnProperty("0") && category.records[0].hasOwnProperty("record")) {
+                                count = category.records[0].record.length;
+                            }
+                            categories.push({name: category.$.name, count});
                         }
                     }
                 });
+                console.log(categories);
 
                 this.setState({categories});
 
@@ -96,26 +140,32 @@ export default class SideBar extends Component {
         );
     }
 
-    removeCategory(categoryId) {
+    removeCategory(category) {
+        let categoryId = category.name;
+        let categoryCount = category.count;
 
-        confirm("Opravdu chcete smazat kategorii " + categoryId + "?").then(
-            result => {
-                httpDelete("/category/" + encodeURIComponent(categoryId)).then(
-                    response => {
-                        if (response) {
-                            this.reload();
-                            PubSub.publish('removedCategory', {categoryId: categoryId});
-                            this.setState({selectedCategory: null});
-                        } else {
-                            modalAlert("Nelze smazat neprázdnou kategorii!");
+        if (categoryCount === 0) {
+            confirm("Opravdu chcete smazat kategorii " + categoryId + "?").then(
+                result => {
+                    httpDelete("/category/" + encodeURIComponent(categoryId)).then(
+                        response => {
+                            if (response) {
+                                this.reload();
+                                PubSub.publish('removedCategory', {categoryId: categoryId});
+                                this.setState({selectedCategory: null});
+                            } else {
+                                modalAlert("Nelze smazat neprázdnou kategorii!");
+                            }
                         }
-                    }
-                );
-            },
-            result => {
-                // `cancel` callback
-            }
-        );
+                    );
+                },
+                result => {
+                    // `cancel` callback
+                }
+            );
+        } else {
+            modalAlert("Nelze smazat neprázdnou kategorii!");
+        }
     }
 
     render() {
@@ -145,8 +195,10 @@ export default class SideBar extends Component {
                                             </span>
                                             {this.state.selectedCategory === category.name ?
                                                 <button
-                                                    onClick={(e) => {e.preventDefault(); this.removeCategory(category.name);}}
+                                                    onClick={(e) => {e.preventDefault(); this.removeCategory(category);}}
                                                     className={"button-circle button-circle--small"}
+                                                    disabled={category.count !== 0}
+                                                    title={(category.count !== 0 ? "Nelze smazat neprázdnou kategorii!" : "")}
                                                 >
                                                     <i className={"fa fa-minus"}></i>
                                                 </button>
