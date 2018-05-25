@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="PB138-project">
+  <ClassDiagramComponents>
+    <Class name="CategoryHandler" package="pb138" visibility="public" xPosition="569.0" yPosition="399.0">
+      <Fields>
+        <Field name="editor" type="LibraryEditor" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LibraryEditor" name="editor"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handle" returnType="HttpServletResponse" visibility="public">
+          <Argument type="String" name="target"/>
+          <Argument type="Request" name="base"/>
+          <Argument type="HttpServletRequest" name="req"/>
+          <Argument type="HttpServletResponse" name="res"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DocumentHandler" package="pb138" visibility="public" xPosition="569.0" yPosition="582.0">
+      <Fields>
+        <Field name="editor" type="LibraryEditor" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LibraryEditor" name="editor"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handle" returnType="HttpServletResponse" visibility="public">
+          <Argument type="String" name="target"/>
+          <Argument type="Request" name="base"/>
+          <Argument type="HttpServletRequest" name="req"/>
+          <Argument type="HttpServletResponse" name="res"/>
+        </Method>
+        <Method name="untitledMethod" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LibraryEditor" package="pb138" visibility="public" xPosition="48.0" yPosition="389.0">
+      <Fields>
+        <Field name="path" type="String" visibility="private" isStatic="true"/>
+        <Field name="doc" type="SpreadsheetDocument" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="openDocument" returnType="boolean" visibility="private"/>
+        <Method name="saveDocument" returnType="boolean" visibility="private"/>
+        <Method name="addCategory" returnType="String" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="renameCategory" returnType="String" visibility="public">
+          <Argument type="String" name="oldName"/>
+          <Argument type="String" name="newName"/>
+        </Method>
+        <Method name="removeCategory" returnType="String" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="addRecord" returnType="String" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="category"/>
+        </Method>
+        <Method name="changeRecordAttr" returnType="String" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="attr"/>
+          <Argument type="String" name="value"/>
+        </Method>
+        <Method name="removeRecord" returnType="String" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="returnDocument" returnType="String" visibility="public"/>
+        <Method name="containsRecord" returnType="String" visibility="private">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="tab" returnType="int" visibility="private">
+          <Argument type="int" name="num"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Main" package="pb138" visibility="public" xPosition="127.0" yPosition="68.0">
+      <Fields>
+        <Field name="editor" type="LibraryEditor" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="String[]" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RecordHandler" package="pb138" visibility="public" xPosition="432.0" yPosition="68.0">
+      <Fields>
+        <Field name="editor" type="LibraryEditor" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LibraryEditor" name="editor"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handle" returnType="HttpServletResponse" visibility="public">
+          <Argument type="String" name="target"/>
+          <Argument type="Request" name="base"/>
+          <Argument type="HttpServletRequest" name="req"/>
+          <Argument type="HttpServletResponse" name="res"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="editor" source="pb138.CategoryHandler" target="pb138.LibraryEditor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="editor" source="pb138.Main" target="pb138.LibraryEditor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="editor" source="pb138.RecordHandler" target="pb138.LibraryEditor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="editor" source="pb138.DocumentHandler" target="pb138.LibraryEditor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
