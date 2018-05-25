@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<article>
+  <articleinfo>
+    <title>PB138 Projekt</title>
+    <subtitle>Webová aplikace pro správu videotéky</subtitle>
+    <author>
+      <firstname>Jozef</firstname>
+      <surname>Mikušinec</surname>
+    </author>
+    <pubdate>2018</pubdate>
+    
+  </articleinfo>
+  
+  <section>
+    <title>Záverečná správa o mojej práci na projekte</title>
+    <para>
+        Ako vedúci projektu som založil a spravoval GitHub repositár,
+        koordinoval tímovú spoluprácu, a rozdelil som projekt na viacero podúloh,
+        ktoré sme si v tíme rozdelili medzi seba.
+    </para><para>
+        Takisto som vytvoril "kostru" projektu - základ repozitára, a vytvoril som
+        základný backend.
+    </para>
+  </section>
+  
+  <section>
+    <title>Podúlohy</title>
+    <para>
+        Projekt bol rozdelený do štyroch hlavných podúloh, a to:
+    </para>
+    <orderedlist numeration="lowerroman">
+      <listitem>
+        <para>Lead developer, backend (ja)</para>
+      </listitem>
+      <listitem>
+        <para>Backend (Ondrej Novák)</para>
+      </listitem>
+      <listitem>
+        <para>User interface design (Simona Nemčoková)</para>
+      </listitem>
+      <listitem>
+        <para>User interface functionality (Jan Laštůvka)</para>
+      </listitem>
+    </orderedlist>
+    
+    <para>
+        Okrem týchto úloh sme ešte dynamicky riešili a prideľovali si ostatné záležitosti,
+        ako napríklad tvorbu dokumentácie.
+    </para>
+  </section>
+  
+  <section>
+    <title>Backend, kostra projektu</title>
+    <para>
+        Vytvoril som základnú kostru projektu a časť backendu. To zahŕňa spustenie
+        serveru, spracovanie http požiadavkov a ich predanie triede LibraryEditor,
+        ktorá požiadavky vykonáva, a ktorá bola implementovaná Ondrejom Novákom.
+    </para>
+  </section>
+  
+</article>
