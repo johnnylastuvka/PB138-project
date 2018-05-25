@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<article>
+  <articleinfo>
+    <title>PB138 Projekt</title>
+    <subtitle>Webová aplikace pro správu videotéky</subtitle>
+    <author>
+      <firstname>Simona</firstname>
+      <surname>Nemčoková</surname>
+    </author>
+    <pubdate>2018</pubdate>
+    
+  </articleinfo>
+  
+  <section>
+    <title>Záverečná správa o mojej práci na projekte</title>
+    <para>
+        Mojou úlohou na projekte bolo vytvoriť grafický návrh webovej aplikácie.
+        Ďalej som pomáhala s dokumentáciou projektu a to konkrétne s UML diagramom.
+        Spravila som aj prezentáciu na obhajobu.
+    </para>
+  </section>
+  
+  <section>
+    <title>Vzhľad stránky</title>
+    <para>
+        Pri návrhu vzhľadu stránky som sa snažila navrhnúť ju čo najprehľadnejšie.
+        Mojím cielom bolo, aby stránka pôsobila moderne, intuitívne a príťažlivo pre používateľa.
+        Dbala som na to, aby všetky požadované funkcie nebolo náročné nájsť a použiť.
+        Na návrh vzhľadu stránky som použila program Affinity Designer, z ktorého som exportovala PDF súbor.
+        Ten som dodala členovi tímu, ktorý sa staral o implementáciu samotnej stránky.
+    </para>
+  </section>
+  
+  <section>
+    <title>Ostatné</title>
+    <para>
+        K dokumentácii projektu som vytvorila UML Use Case diagram, ktorý popisuje funkcie webovej aplikácie.
+        Pomáhala som aj pri tvorbe Class diagramu, ktorý popisuje štruktúru aplikácie (triedy a vzťahy medzi nimi).
+        Prezentáciu k obhajobe som taktiež tvorila v programe Affinity Designer a dodala v PDF súbore.
+    </para>
+  </section>
+  
+</article>
