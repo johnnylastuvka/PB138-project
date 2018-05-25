@@ -43,9 +43,9 @@ export default class Main extends Component {
     removedCategory = (msg, data) => {
         if (this.state.showCategory && data.categoryId === this.state.showCategory) {
             this.setState({showCategory: null});
-        } else if (this.state.showSearch) {
-            this.reload();
         }
+
+        this.reload();
     };
 
     showSearch = (msg, data) => {
@@ -139,7 +139,7 @@ export default class Main extends Component {
 
                                         recordRow.push(recordData.attribute[i]);
 
-                                        if (searchAttributes && recordData.attribute[i].toLowerCase().includes(searchAttributes)) {
+                                        if (searchAttributes && recordData.attribute[i].toLowerCase().includes(searchAttributes.toLowerCase())) {
                                             attributesSearchFoundAttribute = true;
                                             attributesSearchFoundRecord = true;
                                         }
@@ -167,7 +167,7 @@ export default class Main extends Component {
 
                         // category detail has only one table
                         if ((byCategory && category.$.name === byCategory) ||
-                            (searchCategory && category.$.name.toLowerCase().includes(searchCategory)) ||
+                            (searchCategory && category.$.name.toLowerCase().includes(searchCategory.toLowerCase())) ||
                             (searchAttributes && attributesSearchFoundRecord)) {
                             outputTables.push(singleOutputTable);
                         }
