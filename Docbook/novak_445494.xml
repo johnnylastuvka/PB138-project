@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<article>
+  <articleinfo>
+    <title>PB138 Projekt</title>
+    <subtitle>Webová aplikace pro správu videotéky</subtitle>
+    <author>
+      <firstname>Ondřej</firstname>
+      <surname>Novák</surname>
+    </author>
+    <pubdate>2018</pubdate>
+    
+  </articleinfo>
+  
+  <section>
+    <title>Závěrečná zpráva o mojí práci na projektě</title>
+    <para>
+        Mou úlohou byla implementace třídy LibraryEditor, která slouží pro editaci údajů v souboru
+        ve formátu ods. Pro implementaci této třídy jsem použil knihovnu ODFDOM, která slouží
+        pro vytváření a snadnou manipulaci se soubory OpenDocument Format, mezi které OpenDocument
+        Spreadsheet patří.
+    </para>
+    <para>     
+        Při vytvoření nové instance třídy LibraryEditor dojde k otevření souboru s daty. Jeho ukládání
+        probíhá po každé úspěšně vykonané operaci. Pro následné zobrazení a zpracování dat na webovém 
+        rozhraní tato třída vrací XML řetězec z obsahu ods souboru.
+    </para>
+    <para>    
+        Třída LibraryEditor umožňuje operace nad ods souborem jako přidání nové kategorie, přejmenování
+        kategorie, odstranění kategorie, přidání nového záznamu do kategorie, odstranění záznamu, přesuny 
+        záznamů mezi kategoriemi či změny v těchto záznamech (například změna názvu filmu či přidání dalšího
+        filmu k již existujícímu záznamu).
+    </para>
+  </section>
+  
+  <section>
+    <title>Přidání nové kategorie</title>
+    <para>
+        Metoda umožňuje přidat novou kategorii (nový list) do souboru, avšak pouze v případě, že kategorie
+        s daným jménem dosud neexistuje. Při úspěšném vytvoření kategorie metoda nadepíše hlavičku v novém listu 
+        ve formátu ID (jedinečné v dané kategorii) a Film 1 až Film 5 (což reprezentuje jednotlivé filmy). 
+    </para>
+  </section>
+  
+  <section>
+    <title>Přejmenování kategorie</title>
+    <para>
+        Metoda slouží k přejmenování kategorie. Prvně dochází ke kontrole, zda daná kategorie vůbec existuje, 
+        následně se kontroluje, zda se nový název kategorie dosud v souboru nevyskytuje, tedy zda bude unikátní.
+        Pokud nikoliv, pak dojde k přejmenování kategorie.
+    </para>
+  </section>
+  
+  <section>
+    <title>Smazání kategorie</title>
+    <para>
+        Metoda smaže danou kategorii v případě, že daná kategorie existuje a zároveň se v daném listě nenachází žádný 
+        záznam, tzn. jedná se o prázdnou kategorii obsahující pouze hlavičku.
+    </para>
+  </section>
+  
+  <section>
+    <title>Přidání záznamu</title>
+    <para>
+        Metoda umožňuje přidat nový záznam do zvolené kategorie. První dojde ke kontrole, zda daná kategorie existuje.
+        Následně proběhne kontrola, zda se v souboru daný záznam již vyskytuje a pokud nikoliv, tak dojde k přidání 
+        nového řádku do listu s unikátní ID.
+    </para>
+  </section>
+  
+  <section>
+    <title>Odstranění záznamu</title>
+    <para>
+        Metoda slouží k smazání záznamu ze souboru. Prvně proběhne prohledání souboru, zda daný záznam existuje.
+        Pokud se záznam v souboru nachází, pak je smázán (dojde ke vymazání řádku, na kterém se nachází).
+    </para>
+  </section>
+  
+  <section>
+    <title>Změna v záznamu</title>
+    <para>
+        Metoda umožňuje jednak přesuny záznamů mezi kategoriemi, v tomto případě probíhá kontrola, zda daná kategorie a daný 
+        záznam existují. Pokud ano, dojde k přesunu. Zároveň však metoda slouží ke změnám záznamů, je tedy možné nepříklad 
+        změnit jméno záznamu či přidat nový film. I v tomto případě dochází ke kontrole existence záznamu.
+    </para>
+  </section>
+  
+</article>
