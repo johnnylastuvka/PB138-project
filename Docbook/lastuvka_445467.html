@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>PB138 Projekt</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/></head><body><div class="article"><div class="titlepage"><div><div><h2 class="title"><a id="idm45174913544544"/>PB138 Projekt</h2></div><div><h3 class="subtitle"><em>Webová aplikace pro správu videotéky</em></h3></div><div><div class="author"><h3 class="author"><span class="firstname">Jan</span> <span class="surname">Laštůvka</span></h3></div></div><div><p class="pubdate">2018</p></div></div><hr/></div><div class="toc"><p><strong>Table of Contents</strong></p><dl class="toc"><dt><span class="section"><a href="#idm45174913538832">Závěrečná zpráva o mojí práci na projektě</a></span></dt><dt><span class="section"><a href="#idm45174913535360">Postup práce</a></span></dt></dl></div><div class="section"><div class="titlepage"><div><div><h2 class="title"><a id="idm45174913538832"/>Závěrečná zpráva o mojí práci na projektě</h2></div></div></div><p>
+    	V našem týmu bylo mojí úlohou vytvoření webového rozhraní pomocí kterého může uživatel spravovat
+    	svoji videotéku. Výsledná webová aplikace měla využívat pro správu videotéky vytvořené API komunikující
+    	pomocí XML. Vzhled aplikace byl vytvořen podle grafického návrh od Simony Nemčokové.
+    </p><p>     
+    	Webová aplikace měla zprostředkovávat uživatelské rozhraní pro komunikaci s API které obstarává ukládání
+    	veškerých dat videotéky do souboru ve formátu ods. Rozhodl jsem se proto využít moderního javascriptového
+    	frameworku REACT který umožňuje velmi snadno vytvářet webovou aplikaci komunikující pouze se serverovým
+    	API a zároveň umožňuje veškerou zobrazovací logiku provádět přímo u uživatele v prohlížeči.
+    </p><p>  
+    	Návrh webového rozhraní zpracovala kolegyně z týmu. Mojí úlohou bylo podle tohoto grafického návrhu vytvořit
+    	výslednou HTML stránku. Pro snadnější práci s kaskádovými styli (CSS) jsem se rozhodl využít CSS
+    	preprocesoru SASS který umožňuje rychlejší práci s kaskádovými styly a zároveň umožňuje využívat
+    	funkcí a vylepšení které samotné CSS nenabízí.
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title"><a id="idm45174913535360"/>Postup práce</h2></div></div></div><p>
+    	Práci jsem začal vytvořením základní kostry REACTové aplikace a následném nakódování HTML stránky
+    	z dodaných návrhů. Při řešení této části jsem nenarazil na žádné komplikace.
+    </p><p>     
+    	Další částí bylo napojení aplikace na serverové API. Pro zpracování XML dat které vrací API jsem se
+    	rozhodl využít javascriptovou knihovnu xml2js pomocí které jsem mohl velmi snadno převést obdržené XML
+    	z API do javascriptového pole a dále poté využít funkcí map a forEach na procházení pole a zpracování dat.
+    	Při řešení této části bylo nejnáročnější parsování dat z API, jelikož API neumožňuje stažení například samotných
+    	kategorií, samotných nahrávat případně nahrávat podle ID kategorie. API mělo dostupný pouze jeden bod který
+    	vracen veškeré údaje dostupné v ods dokumentu a bylo tedy nutné všechny údaje projít a vytvořit z nich například
+    	seznam kategorií, seznam nahrávat pro kategorii apod.
+    </p><p>  
+    	Poslední částí bylo poté odlazení nalezených chyb které byly objeveny při závěrečné fázi testování.
+    	Celkem jsem opravoval 2 chyby a 1 vylepšení. První chybou bylo case sensitive vyhledávání a druhou chybou
+    	bylo to, že smazaná kategorie se i nadále zobrazovala v seznamu kategorií kam lze přesunout nahrávku. Vylepšení
+    	které jsem následně dodělával bylo zašednutí tlačítka pro smazání kategorie pokud kategorie obsahovala
+    	nějakou nahrávku.
+    </p></div></div></body></html>

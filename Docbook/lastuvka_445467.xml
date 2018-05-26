@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<article>
+  <articleinfo>
+    <title>PB138 Projekt</title>
+    <subtitle>Webová aplikace pro správu videotéky</subtitle>
+    <author>
+      <firstname>Jan</firstname>
+      <surname>Laštůvka</surname>
+    </author>
+    <pubdate>2018</pubdate>
+    
+  </articleinfo>
+  
+  <section>
+    <title>Závěrečná zpráva o mojí práci na projektě</title>
+    <para>
+    	V našem týmu bylo mojí úlohou vytvoření webového rozhraní pomocí kterého může uživatel spravovat
+    	svoji videotéku. Výsledná webová aplikace měla využívat pro správu videotéky vytvořené API komunikující
+    	pomocí XML. Vzhled aplikace byl vytvořen podle grafického návrh od Simony Nemčokové.
+    </para>
+    <para>     
+    	Webová aplikace měla zprostředkovávat uživatelské rozhraní pro komunikaci s API které obstarává ukládání
+    	veškerých dat videotéky do souboru ve formátu ods. Rozhodl jsem se proto využít moderního javascriptového
+    	frameworku REACT který umožňuje velmi snadno vytvářet webovou aplikaci komunikující pouze se serverovým
+    	API a zároveň umožňuje veškerou zobrazovací logiku provádět přímo u uživatele v prohlížeči.
+    </para>
+    <para>  
+    	Návrh webového rozhraní zpracovala kolegyně z týmu. Mojí úlohou bylo podle tohoto grafického návrhu vytvořit
+    	výslednou HTML stránku. Pro snadnější práci s kaskádovými styli (CSS) jsem se rozhodl využít CSS
+    	preprocesoru SASS který umožňuje rychlejší práci s kaskádovými styly a zároveň umožňuje využívat
+    	funkcí a vylepšení které samotné CSS nenabízí.
+    </para>
+  </section>
+
+  <section>
+    <title>Postup práce</title>
+    <para>
+    	Práci jsem začal vytvořením základní kostry REACTové aplikace a následném nakódování HTML stránky
+    	z dodaných návrhů. Při řešení této části jsem nenarazil na žádné komplikace.
+    </para>
+    <para>     
+    	Další částí bylo napojení aplikace na serverové API. Pro zpracování XML dat které vrací API jsem se
+    	rozhodl využít javascriptovou knihovnu xml2js pomocí které jsem mohl velmi snadno převést obdržené XML
+    	z API do javascriptového pole a dále poté využít funkcí map a forEach na procházení pole a zpracování dat.
+    	Při řešení této části bylo nejnáročnější parsování dat z API, jelikož API neumožňuje stažení například samotných
+    	kategorií, samotných nahrávat případně nahrávat podle ID kategorie. API mělo dostupný pouze jeden bod který
+    	vracen veškeré údaje dostupné v ods dokumentu a bylo tedy nutné všechny údaje projít a vytvořit z nich například
+    	seznam kategorií, seznam nahrávat pro kategorii apod.
+    </para>
+    <para>  
+    	Poslední částí bylo poté odlazení nalezených chyb které byly objeveny při závěrečné fázi testování.
+    	Celkem jsem opravoval 2 chyby a 1 vylepšení. První chybou bylo case sensitive vyhledávání a druhou chybou
+    	bylo to, že smazaná kategorie se i nadále zobrazovala v seznamu kategorií kam lze přesunout nahrávku. Vylepšení
+    	které jsem následně dodělával bylo zašednutí tlačítka pro smazání kategorie pokud kategorie obsahovala
+    	nějakou nahrávku.
+    </para>
+  </section>
+  
+</article>
