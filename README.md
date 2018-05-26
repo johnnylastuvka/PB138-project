@@ -2,7 +2,7 @@
 
 See the [wiki](https://github.com/mik-jozef/PB138-project/wiki) for technical documentation.
 
-Our amazing team has created these four ([1](https://mik-jozef.github.io/PB138-project/Docbook/nemcokova_445292.html), [2](https://mik-jozef.github.io/PB138-project/Docbook/mikusinec_456207.html), [3](PB138-project/Docbook/novak_445494.html), 4) informative documents just for you! (2 links coming "soon".)
+Our amazing team has created these four ([1](https://mik-jozef.github.io/PB138-project/Docbook/nemcokova_445292.html), [2](https://mik-jozef.github.io/PB138-project/Docbook/mikusinec_456207.html), [3](https://mik-jozef.github.io/PB138-project/Docbook/novak_445494.html), [4](https://mik-jozef.github.io/PB138-project/Docbook/lastuvka_445467.html)) informative documents just for you!
 
 You can also have a look at the [graphic user interface design examples (pdf)](https://mik-jozef.github.io/PB138-project/UI.pdf).
 
