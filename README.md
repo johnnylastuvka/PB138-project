@@ -10,3 +10,6 @@ You can also have a look at the [graphic user interface design examples (pdf)](h
 
  - Jetty ([website](https://www.eclipse.org/jetty/))
  - Simple ODF ([website](http://incubator.apache.org/odftoolkit/simple/index.html))
+
+### UML diagrams
+[Link](./UML.md)
